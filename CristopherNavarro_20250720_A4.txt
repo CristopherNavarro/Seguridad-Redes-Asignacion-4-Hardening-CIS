@@ -1,0 +1,58 @@
+================================================================================
+INSTITUTO TECNOLÓGICO DE LAS AMÉRICAS (ITLA)
+DEPARTAMENTO DE SEGURIDAD EN TECNOLOGÍAS DE LA INFORMACIÓN
+FICHA INSTITUCIONAL DE ENTREGA OFICIAL - ASIGNACIÓN 4
+================================================================================
+
+DATOS DEL ESTUDIANTE:
+---------------------
+* Nombre Completo: Cristopher Navarro
+* Matrícula Institucional: 2025-0720
+* Carrera: Tecnólogo en Seguridad Informática
+
+DATOS DE LA ASIGNATURA:
+-----------------------
+* Asignatura: Seguridad de Redes
+* Docente: Jonathan Esteban Rondón Corniel
+* Asignación: Asignación 4 (Semana 9) - Hardening Automatizado CIS Benchmark
+* Fecha de Realización y Entrega: 9 de noviembre de 2026
+
+ENLACES OFICIALES DE ENTREGA:
+-----------------------------
+* Enlace al Video Demostrativo (YouTube):
+  https://youtu.be/JJHmRECXgiY
+
+* Enlace al Repositorio Oficial en GitHub:
+  https://github.com/CristopherNavarro/Seguridad-Redes-Asignacion-4-Hardening-CIS
+
+RESUMEN TÉCNICO DE LA PRÁCTICA:
+-------------------------------
+* Esquema de Direccionamiento IP Base: 10.25.7.0/24 (Derivado de matrícula 2025-0720)
+  - WAN (R1-EDGE <-> FW-FORTINET): 10.25.7.0/30 (R1: .1, FW: .2)
+  - LAN (FW-FORTINET <-> SW-CORE-L2): 10.25.7.64/26 (FW: .65, SW SVI: .66, PC-ADMIN: .70)
+  - DMZ (FW-FORTINET <-> SRV-DMZ): 10.25.7.128/26 (FW: .129, SRV: .130)
+  - Internet Simulado (Loopback0 R1): 10.25.7.254/32
+
+* Políticas de Seguridad en FortiGate:
+  - LAN_TO_DMZ: Acepta tráfico interno a servidores DMZ con log completo.
+  - LAN_TO_WAN: Acepta salida a Internet con NAT sobrecarga y log completo.
+  - DMZ_TO_WAN: Acepta salida perimetral de servidores con NAT y log completo.
+
+* Automatización de Seguridad (CIS Benchmark):
+  - Script en Python: cis_hardening_scanner.py
+  - Modos Soportados: --mode audit (auditoría no destructiva) y --mode remediate (remediación y reporte póstumo).
+  - Controles Evaluados: 21 controles (Cisco IOS, Cisco L2 Switch, Fortinet FortiOS).
+  - Conformidad Alcanzada: 100.0% (21/21 PASS, 0 FAIL).
+
+ARCHIVOS INCLUIDOS EN EL ENTREGABLE:
+------------------------------------
+1. README.md (Documentación técnica detallada con evidencias visuales).
+2. cis_hardening_scanner.py (Script de automatización en Python).
+3. informe_auditoria_cis.txt (Informe generado en modo auditoría).
+4. informe_postumo_cis.txt (Informe póstumo con 100% de cumplimiento).
+5. R1-EDGE_running-config.txt (Configuración exportada de Cisco 7200).
+6. SW-CORE-L2_running-config.txt (Configuración exportada de Cisco IOSvL2).
+7. FW-FORTINET_config.txt (Configuración exportada de FortiGate 7.0.9).
+8. Seguridad-Redes-Asignacion4-CIS-Hardening.gns3 (Topología portable GNS3).
+9. assets/*.png (Fotogramas de evidencia extraídos del video).
+================================================================================
