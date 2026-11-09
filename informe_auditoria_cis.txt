@@ -1,0 +1,120 @@
+================================================================================
+INSTITUTO TECNOLÓGICO DE LAS AMÉRICAS (ITLA)
+DEPARTAMENTO DE SEGURIDAD EN TECNOLOGÍAS DE LA INFORMACIÓN
+ASIGNATURA: SEGURIDAD DE REDES - ASIGNACIÓN 4 (HARDENING CIS BENCHMARK)
+================================================================================
+Estudiante: Cristopher Navarro | Matrícula: 2025-0720
+Docente: Jonathan Esteban Rondón Corniel
+Fecha de Auditoría: 2026-11-09 12:51:18
+Tipo de Informe: Auditoría Inicial de Seguridad (Sin Modificar)
+================================================================================
+
+
+[+] DISPOSITIVO: R1-EDGE (Router Perimetral Cisco 7200 (WAN))
+    IP de Gestión: 10.25.7.1 | Consola: 192.168.6.129:5000
+--------------------------------------------------------------------------------
+CONTROL ID             | ESTADO   | DESCRIPCIÓN
+--------------------------------------------------------------------------------
+CIS Cisco 1.1.1        | PASS     | Cifrado de Contraseñas del Sistema
+  -> Justificación: Evita el almacenamiento de contraseñas en texto claro dentro del archivo running-config.
+  -> Parámetro Esperado: service password-encryption
+
+CIS Cisco 1.1.2        | PASS     | Uso de Algoritmo de Hashing Fuerte para Enable Secret
+  -> Justificación: Protege el acceso privilegiado (modo EXEC) con funciones de derivación criptográfica seguras.
+  -> Parámetro Esperado: enable secret <hash>
+
+CIS Cisco 1.2.1        | PASS     | Configuración de Banner de Acceso Restringido
+  -> Justificación: Notifica legalmente a los usuarios que el sistema está monitoreado y restringido a personal autorizado.
+  -> Parámetro Esperado: banner motd configurado
+
+CIS Cisco 1.3.1        | PASS     | Deshabilitar Servidor HTTP en Texto Plano
+  -> Justificación: Mitiga vectores de ataque e intercepción de credenciales sobre interfaces web no cifradas.
+  -> Parámetro Esperado: no ip http server
+
+CIS Cisco 2.1.1        | PASS     | Habilitar Protocolo SSH Versión 2
+  -> Justificación: Deshabilita SSHv1 vulnerable y garantiza canales de gestión con cifrado robusto.
+  -> Parámetro Esperado: ip ssh version 2
+
+CIS Cisco 2.1.2        | PASS     | Seguridad en Líneas Virtuales VTY (SSH + Inactividad)
+  -> Justificación: Bloquea Telnet en líneas remotas y cierra sesiones desatendidas tras inactividad.
+  -> Parámetro Esperado: transport input ssh & exec-timeout
+
+CIS Cisco 2.2.1        | PASS     | Marcas de Tiempo de Alta Precisión en Logs
+  -> Justificación: Facilita la correlación de eventos forenses y análisis cronológico de incidentes.
+  -> Parámetro Esperado: service timestamps log datetime msec
+
+
+[+] DISPOSITIVO: SW-CORE-L2 (Switch de Distribución Cisco IOSvL2 (LAN))
+    IP de Gestión: 10.25.7.66 | Consola: 192.168.6.129:5003
+--------------------------------------------------------------------------------
+CONTROL ID             | ESTADO   | DESCRIPCIÓN
+--------------------------------------------------------------------------------
+CIS Cisco 1.1.1        | PASS     | Cifrado de Contraseñas del Sistema
+  -> Justificación: Evita el almacenamiento de contraseñas en texto claro dentro del archivo running-config.
+  -> Parámetro Esperado: service password-encryption
+
+CIS Cisco 1.1.2        | PASS     | Uso de Algoritmo de Hashing Fuerte para Enable Secret
+  -> Justificación: Protege el acceso privilegiado (modo EXEC) con funciones de derivación criptográfica seguras.
+  -> Parámetro Esperado: enable secret <hash>
+
+CIS Cisco 1.2.1        | PASS     | Configuración de Banner de Acceso Restringido
+  -> Justificación: Notifica legalmente a los usuarios que el sistema está monitoreado y restringido a personal autorizado.
+  -> Parámetro Esperado: banner motd configurado
+
+CIS Cisco 1.3.1        | PASS     | Deshabilitar Servidor HTTP en Texto Plano
+  -> Justificación: Mitiga vectores de ataque e intercepción de credenciales sobre interfaces web no cifradas.
+  -> Parámetro Esperado: no ip http server
+
+CIS Cisco 2.1.1        | PASS     | Habilitar Protocolo SSH Versión 2
+  -> Justificación: Deshabilita SSHv1 vulnerable y garantiza canales de gestión con cifrado robusto.
+  -> Parámetro Esperado: ip ssh version 2
+
+CIS Cisco 2.1.2        | PASS     | Seguridad en Líneas Virtuales VTY (SSH + Inactividad)
+  -> Justificación: Bloquea Telnet en líneas remotas y cierra sesiones desatendidas tras inactividad.
+  -> Parámetro Esperado: transport input ssh & exec-timeout
+
+CIS Cisco 2.2.1        | PASS     | Marcas de Tiempo de Alta Precisión en Logs
+  -> Justificación: Facilita la correlación de eventos forenses y análisis cronológico de incidentes.
+  -> Parámetro Esperado: service timestamps log datetime msec
+
+CIS Cisco L2 3.1       | PASS     | Seguridad de Puerto (Port-Security) en Puertos de Acceso
+  -> Justificación: Previene ataques de saturación CAM (MAC Flooding) y suplantación de identidad en capa de acceso.
+  -> Parámetro Esperado: switchport port-security habilitado
+
+CIS Cisco L2 3.2       | PASS     | Protección de Árbol de Expansión (BPDU Guard)
+  -> Justificación: Protege la topología STP contra switches no autorizados o bucles accidentales.
+  -> Parámetro Esperado: spanning-tree bpduguard enable
+
+
+[+] DISPOSITIVO: FW-FORTINET (Firewall de Próxima Generación FortiGate 7.0.9)
+    IP de Gestión: 10.25.7.65 | Consola: 192.168.6.129:5001
+--------------------------------------------------------------------------------
+CONTROL ID             | ESTADO   | DESCRIPCIÓN
+--------------------------------------------------------------------------------
+CIS FortiOS 1.1        | PASS     | Tiempo de Espera por Inactividad de Administrador
+  -> Justificación: Cierra automáticamente las sesiones administrativas en la GUI y CLI para evitar accesos desatendidos.
+  -> Parámetro Esperado: set admintimeout <= 10
+
+CIS FortiOS 1.2        | PASS     | Política de Bloqueo tras Intentos Fallidos de Inicio de Sesión
+  -> Justificación: Protege el firewall contra ataques de fuerza bruta dirigidos a cuentas de gestión.
+  -> Parámetro Esperado: set admin-lockout-threshold <= 5
+
+CIS FortiOS 1.3        | PASS     | Exigencia de Complejidad en Contraseñas Administrativas
+  -> Justificación: Exige longitud mínima, mayúsculas, minúsculas, números y símbolos para credenciales locales.
+  -> Parámetro Esperado: password-policy status enable
+
+CIS FortiOS 1.4        | PASS     | Banner de Advertencia Previo al Inicio de Sesión
+  -> Justificación: Despliega advertencia legal antes de autenticarse en el firewall perimetral.
+  -> Parámetro Esperado: set pre-login-banner enable
+
+CIS FortiOS 3.1        | PASS     | Registro Completo de Sesiones (Log All Traffic)
+  -> Justificación: Garantiza trazabilidad y auditoría completa de los flujos que atraviesan las políticas de seguridad.
+  -> Parámetro Esperado: set logtraffic all
+
+================================================================================
+RESUMEN EJECUTIVO DE CUMPLIMIENTO CIS:
+  * Total de Controles Evaluados: 21
+  * Controles Satisfactorios [PASS]: 21
+  * Controles Deficientes [FAIL]:    0
+  * Índice de Conformidad de Seguridad: 100.0%
+================================================================================
