@@ -1,97 +1,190 @@
 !
 version 15.2
+
 service timestamps debug datetime msec
+
 service timestamps log datetime msec
+
 service password-encryption
+
 !
+
 hostname R1-EDGE
+
 !
+
 boot-start-marker
+
 boot-end-marker
+
 !
+
 !
+
 logging buffered 64000 informational
+
 enable secret 5 $1$AgGO$kgLf21Zg6G6FZgMvivyVl/
+
 !
+
 no aaa new-model
+
 no ip source-route
+
 no ip icmp rate-limit unreachable
+
 !
+
 !
+
 !
+
 !
+
 !
+
 !
+
 no ip domain lookup
+
 ip domain name itla.edu.do
+
 ip cef
+
 no ipv6 cef
+
 !
+
 !
+
 multilink bundle-name authenticated
+
 !
+
 !
+
 !
+
 !
+
 !
+
 !
+
 !
-username admin privilege 15 secret 5 $1$VLj/$XeB2nx0ZM9ANiGeNOBu4w1
+
+username admin privilege 15 secret 5 $1$Y8wX$Q1/mLsrAHYvqActi.pEpC1
+
 !
+
 !
+
 !
+
 !
+
 !
+
 ip tcp synwait-time 5
+
 ip ssh time-out 60
-ip ssh authentication-retries 3
+
 ip ssh version 2
+
 ! 
+
 !
+
 !
+
 !
+
 !
+
 !
+
 !
+
 !
+
 !
+
 interface Loopback0
+
  description SIMULACION_INTERNET_WAN
+
  ip address 10.25.7.254 255.255.255.255
+
 !
+
 interface FastEthernet0/0
+
  description ENLACE_WAN_A_FORTIGATE
+
  ip address 10.25.7.1 255.255.255.252
+
  duplex full
+
 !
+
 ip forward-protocol nd
+
 !
+
 !
+
 no ip http server
+
 no ip http secure-server
+
 ip route 10.25.7.0 255.255.255.0 10.25.7.2
+
 !
+
 !
+
 !
+
 !
+
 control-plane
+
 !
-banner motd ^C[ACCESO RESTRINGIDO] Solo personal autorizado ITLA - Cristopher Navarro (2025-0720)^C
+
+banner motd ^CC[ACCESO RESTRINGIDO] Solo personal autorizado ITLA - Cristopher Navarro (2025-0720)^C
+
 !
+
 line con 0
+
  exec-timeout 5 0
+
  privilege level 15
+
  logging synchronous
+
  stopbits 1
+
 line aux 0
+
  exec-timeout 0 0
+
  privilege level 15
+
  logging synchronous
+
  stopbits 1
+
 line vty 0 4
+
  exec-timeout 5 0
+
  login local
+
  transport input ssh
+
 !
+
 !
+
 end
